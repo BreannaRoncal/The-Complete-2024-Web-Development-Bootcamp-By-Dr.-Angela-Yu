@@ -10,13 +10,17 @@ for (var i = 0; i < numOfDrums; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     var buttonTextContent = this.textContent;
     makeSound(buttonTextContent);
+    buttonAnimation(buttonTextContent);
   });
 }
 
 document.addEventListener("keypress", function (event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
+
+// create a function that works for both mouse clicks and key presses
 function makeSound(key) {
   // Play the corresponding sound to the user's input
   switch (key) {
@@ -53,4 +57,15 @@ function makeSound(key) {
     default:
       console.log(buttonTextContent);
   }
+}
+
+
+// When button is clicked or key pressed, then the website will simulate the button being pressed
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
