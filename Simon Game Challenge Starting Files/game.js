@@ -1,20 +1,21 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
-
-// Keep track of the randomly created pattern
 var gamePattern = [];
-
-// Keep track of the user's pattern
 var userClickedPattern = [];
-
+var level = 0;
+var gameStart = true;
 
 $(".btn").click(function () {
   var userChosenColor = $(this).attr("id");
   userClickedPattern.push(userChosenColor);
   playSound(userChosenColor);
+  checkAnswer(userClickedPattern.length - 1);
 });
 
-// Select a random color, make it flash, and play its sound
 function nextSequence() {
+  userClickedPattern = [];
+  level++;
+  $("h1").text("Level " + level);
+
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
@@ -30,10 +31,28 @@ function playSound(name) {
   sound.play();
 }
 
-// When the user clicks the button, simulate it being pressed
 function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
+}
+
+$("body").keypress(function () {
+  if (gameStart) {
+    nextSequence();
+    gameStart = false;
+  }
+});
+
+function checkAnswer(currentLevel) {
+  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+    if (userClickedPattern.length === gamePattern.length) {
+      setTimeout(function () {
+        nextSequence();
+      }, 1000);
+    }
+  } else {
+    console.log("wrong");
+  }
 }
