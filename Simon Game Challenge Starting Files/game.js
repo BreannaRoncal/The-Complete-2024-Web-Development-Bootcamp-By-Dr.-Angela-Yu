@@ -45,6 +45,20 @@ $("body").keypress(function () {
   }
 });
 
+function gameOver() {
+  playSound("wrong");
+  $("body").addClass("game-over");
+  setTimeout(function () {
+    $("body").removeClass("game-over");
+  }, 200);
+  $("h1").text("Game Over, Press Any Key to Restart");
+}
+function startOver() {
+  gameStart = true;
+  level = 0;
+  gamePattern = [];
+}
+
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     if (userClickedPattern.length === gamePattern.length) {
@@ -53,6 +67,7 @@ function checkAnswer(currentLevel) {
       }, 1000);
     }
   } else {
-    console.log("wrong");
+    gameOver();
+    startOver();
   }
 }
