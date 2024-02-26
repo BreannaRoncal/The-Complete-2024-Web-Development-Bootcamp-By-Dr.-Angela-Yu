@@ -1,0 +1,12 @@
+{
+  "name": "qr-code-generator",
+  "version": "1.0.0",
+  "description": "Create QR Code from user input",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bre T",
+  "license": "ISC"
+}
