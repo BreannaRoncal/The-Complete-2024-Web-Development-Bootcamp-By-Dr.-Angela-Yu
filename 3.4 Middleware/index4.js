@@ -1,3 +1,13 @@
+/*
+Use Middleware to GET the user's input and POST the result of the Band Name
+
+Node.js is used with the following packages:
+- express to simplify the Node.js server code
+- body-parser, dirname and fileURLToPath to get the user's input and return the Band Name
+
+*/
+
+
 import express from "express";
 import bodyParser from "body-parser";
 
