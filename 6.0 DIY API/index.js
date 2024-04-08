@@ -1,3 +1,6 @@
+// Access API using Postman on localhost:3000
+
+
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
